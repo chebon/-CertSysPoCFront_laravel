@@ -82,4 +82,9 @@ class MainController extends Controller
         return view('profile', ['error' => $processed_results]);
     }
 
+    public function dashboard()
+    {
+        return view('admin.dashboard');
+    }
+
 }
