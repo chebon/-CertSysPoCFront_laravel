@@ -18,9 +18,9 @@ Route::get('profile', 'MainController@profile');
 Route::post('profile/create', 'MainController@profile_create');
 
 Route::get('result', 'MainController@result_create');
-Route::post('create/result', 'MainController@result_store');
+Route::post('result/create', 'MainController@result_store');
 
-//Auth::routes();
+Auth::routes();
 
 $this->get('admin/login', 'Auth\LoginController@showLoginForm')->name('login');
 $this->post('admin/login', 'Auth\LoginController@login');

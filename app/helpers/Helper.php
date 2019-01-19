@@ -18,7 +18,7 @@ class Helper
             $client = new \GuzzleHttp\Client();
             $url = "http://35.246.59.250:8001/".$url_suffix;
             $request = $client->request('POST', $url, ['json' => $form_data]);
-            $response = $request->getBody();
+        $response = $request->getBody()->getContents();
             return $response;
     }
 
@@ -29,11 +29,19 @@ class Helper
         }
     }
 
+    public static function fetch_results($keys)
+    {
+        foreach ($keys as $key) {
+            dd($key);
+        }
+    }
+
     public static function process_profile_creation($response){
         $response = json_decode($response);
         if(empty($response)){
             return 'Sorry an error occurred please try again later';
         }
+        return $response;
     }
 
     public static function process_results_creation($response){

@@ -38,7 +38,7 @@ class MainController extends Controller
      */
     public function profile()
     {
-        return view('profile');
+        return view('admin.profile');
     }
 
     /**
@@ -52,7 +52,8 @@ class MainController extends Controller
         $url_surfix = 'results';
         $results = Helper::send_request($url_surfix, $request->all());
         $processed_results = Helper::process_profile_creation($results);
-        return view('profile', ['error' => $processed_results]);
+        $processed_results = Helper::fetch_results($processed_results);
+        dd($processed_results);
         dd($processed_results);
     }
 

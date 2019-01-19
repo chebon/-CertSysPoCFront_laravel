@@ -98,8 +98,6 @@ class InitSys extends Command
 
         $users = User::all();
 
-        $users = User::all();
-
         foreach ($users as $user) {
             if ($user->id <= 4) {
                 $user->assignRole('admin');
