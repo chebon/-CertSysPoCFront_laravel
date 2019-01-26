@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\helpers\Helper;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class MainController extends Controller
 {
@@ -14,7 +15,7 @@ class MainController extends Controller
      */
     public function index()
     {
-        return view('index');
+        return view('home');
     }
 
     /**
@@ -28,6 +29,11 @@ class MainController extends Controller
         $results = Helper::send_request($url_surfix, $request->all());
         $processed_results = Helper::process_results($results);
         return view('index', ['error' => $processed_results]);
+    }
+
+    public function result_store(Request $request)
+    {
+        dd($request->all());
     }
 
     /**
@@ -52,6 +58,9 @@ class MainController extends Controller
         $url_surfix = 'results';
         $results = Helper::send_request($url_surfix, $request->all());
         $processed_results = Helper::process_profile_creation($results);
+        if ($processed_results == 'No results found') {
+            return Redirect::back()->withErrors('No results found for the Student')->withInput();
+        }
         $processed_results = Helper::fetch_results($processed_results);
         dd($processed_results);
         dd($processed_results);

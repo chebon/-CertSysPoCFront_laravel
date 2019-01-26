@@ -48,7 +48,7 @@
                 <li>
                     <a href="/profile">
                         <i class="material-icons">grid_on</i>
-                        <p>profile Lists</p>
+                        <p>profile Search</p>
                     </a>
                 </li>
 
@@ -56,12 +56,6 @@
                     <a href="/profile/create">
                         <i class="material-icons">extension</i>
                         <p>profile Create</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="/result">
-                        <i class="material-icons">aspect_ratio</i>
-                        <p>Result Lists</p>
                     </a>
                 </li>
 
@@ -241,6 +235,7 @@
 <script src="/admin/assets/js/charts/flot-charts.js"></script>
 <script src="/admin/assets/js/charts/chartjs-charts.js"></script>
 
+@yield('js_assets')
 <script type="text/javascript">
     $(document).ready(function () {
 

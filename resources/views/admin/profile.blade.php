@@ -19,14 +19,16 @@
                                             <div class="col-md-3">
                                                 <div class="form-group label-floating is-empty">
                                                     <label class="control-label"></label>
-                                                    <input type="text" name="fullname" class="form-control"
+                                                    <input type="text" name="fullname" value="{{ old('fullname') }}"
+                                                           class="form-control"
                                                            placeholder="fullname">
                                                     <span class="material-input"></span></div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group label-floating is-empty">
                                                     <label class="control-label"></label>
-                                                    <input type="text" name="admission_number" class="form-control"
+                                                    <input type="text" name="admission_number"
+                                                           value="{{ old('admission_number') }}" class="form-control"
                                                            placeholder="admission number">
                                                     <span class="material-input"></span></div>
                                             </div>

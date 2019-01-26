@@ -17,7 +17,7 @@ Route::post('results', 'MainController@search_results');
 Route::get('profile', 'MainController@profile');
 Route::post('profile/create', 'MainController@profile_create');
 
-Route::get('result', 'MainController@result_create');
+Route::get('result/create', 'MainController@result_create');
 Route::post('result/create', 'MainController@result_store');
 
 Auth::routes();
@@ -28,3 +28,4 @@ $this->post('admin/logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'MainController@dashboard')->name('dashboard');
+Route::get('/home', 'MainController@dashboard')->name('dashboard-home');
