@@ -1,7 +1,27 @@
 @extends('admin.layout')
+
+@section('css_assets')
+    <style>
+        .overlay {
+            background: rgba(0, 0, 0, .4);
+            position: absolute;
+            width: 100%;
+            height: 300%;
+            z-index: 1;
+            padding-left: 40%;
+            padding-top: 16%;
+        }
+    </style>
+@endsection
+
 @section('content')
 
     <div class="content">
+        <div class="overlay">
+            <div class="col-lg-4" style="background-color: #ffffff;height: 50px;padding-top: 20px;text-align: center;">
+                Coming Soon
+            </div>
+        </div>
         <div class="container-fluid">
 
             <div class="row">
@@ -207,7 +227,7 @@
                                     <td>
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox" name="optionsCheckboxes" checked>
+                                                <input type="checkbox" name="optionsCheckboxes">
                                             </label>
                                         </div>
                                     </td>
@@ -268,7 +288,7 @@
                                     <td>
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox" name="optionsCheckboxes" checked>
+                                                <input type="checkbox" name="optionsCheckboxes">
                                             </label>
                                         </div>
                                     </td>
@@ -452,3 +472,7 @@
 
 @endsection
 
+
+@section("js_assets")
+
+@endsection

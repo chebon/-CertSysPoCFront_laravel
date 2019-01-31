@@ -15,9 +15,10 @@ Route::get('/', 'MainController@index');
 Route::post('results', 'MainController@search_results');
 
 Route::get('profile', 'MainController@profile');
-Route::post('profile/create', 'MainController@profile_create');
+Route::post('profile/search', 'MainController@profile_search');
 
 Route::get('result/create', 'MainController@result_create');
+Route::get('/get-transcript/{id}/{title}', 'MainController@get_transcript');
 Route::post('result/create', 'MainController@result_store');
 
 Auth::routes();

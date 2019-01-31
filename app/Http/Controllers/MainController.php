@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\helpers\Helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 
 class MainController extends Controller
 {
@@ -15,6 +16,7 @@ class MainController extends Controller
      */
     public function index()
     {
+        return redirect('/login');
         return view('home');
     }
 
@@ -33,7 +35,16 @@ class MainController extends Controller
 
     public function result_store(Request $request)
     {
-        dd($request->all());
+        $data = $request->all();
+        $units = $data['student-units'];
+        unset($data['student-units']);
+        $overvals = $data;
+        $payload['results'] = $units;
+        $payload['overalls'] = $overvals;
+        $url_surfix = 'results/create';
+        $response = Helper::send_request($url_surfix, $payload);
+        //Todo process response for errors
+        return redirect('/profile');
     }
 
     /**
@@ -53,17 +64,17 @@ class MainController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function profile_create(Request $request)
+    public function profile_search(Request $request)
     {
         $url_surfix = 'results';
         $results = Helper::send_request($url_surfix, $request->all());
         $processed_results = Helper::process_profile_creation($results);
         if ($processed_results == 'No results found') {
-            return Redirect::back()->withErrors('No results found for the Student')->withInput();
+            return Redirect::back()->with('status', 'No results found for the Student')->withInput();
         }
         $processed_results = Helper::fetch_results($processed_results);
-        dd($processed_results);
-        dd($processed_results);
+        session(['data' => $processed_results]);
+        return Redirect::back()->with('data', $processed_results)->withInput();
     }
 
     /**
@@ -75,6 +86,15 @@ class MainController extends Controller
     public function result_create()
     {
         return view('results');
+    }
+
+    public function get_transcript($id, $title)
+    {
+        $transcript = Storage::get('data.json');
+        $transcript = json_decode($transcript);
+
+        return view('admin.result')->with(['data' => $transcript, 'title' => $title]);
+        return response()->json($transcript);
     }
 
     /**

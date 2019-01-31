@@ -22,6 +22,8 @@
     <link href="/admin/assets/vendors/material-design-iconic-font/dist/css/material-design-iconic-font.min.css"
           rel="stylesheet">
 
+    @yield('css_assets')
+
 </head>
 
 <body>
@@ -41,27 +43,20 @@
             <ul class="nav">
                 <li class="active">
                     <a href="/dashboard">
-                        <i class="material-icons">dashboard</i>
+                        <i class="material-icons"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
                 <li>
                     <a href="/profile">
-                        <i class="material-icons">grid_on</i>
+                        <i class="material-icons"></i>
                         <p>profile Search</p>
                     </a>
                 </li>
 
                 <li>
-                    <a href="/profile/create">
-                        <i class="material-icons">extension</i>
-                        <p>profile Create</p>
-                    </a>
-                </li>
-
-                <li>
                     <a href="/result/create">
-                        <i class="material-icons">apps</i>
+                        <i class="material-icons"></i>
                         <p>Result Create</p>
                     </a>
                 </li>
@@ -236,12 +231,5 @@
 <script src="/admin/assets/js/charts/chartjs-charts.js"></script>
 
 @yield('js_assets')
-<script type="text/javascript">
-    $(document).ready(function () {
-
-        // Javascript method's body can be found in assets/js/demos.js
-        demo.initVectorMap();
-    });
-</script>
 
 </html>

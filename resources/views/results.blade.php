@@ -5,9 +5,9 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <form action="/result/create" class="form-horizontal repeater" method="POST">
+                        <form action="/result/create" class="form-horizontal repeater" id="results-form" method="POST">
                             <div class="card-header card-header-text">
-                                <h4 class="card-title">Insert Result</h4>
+                                <h4 class="card-title">Create Result</h4>
                             </div>
                             <div class="card-content" data-repeater-list="student-units">
                                 <div class="row">
@@ -38,7 +38,7 @@
                                             <div class="col-md-3">
                                                 <div class="form-group label-floating is-empty">
                                                     <label class="control-label"></label>
-                                                    <input class="form-control" name="average" placeholder="Average"
+                                                    <input class="form-control" name="averages" placeholder="Average"
                                                            type="text">
                                                     <span class="material-input"></span></div>
                                             </div>
@@ -116,7 +116,7 @@
                             </div>
 
                             <div class="col-lg-12" style="text-align: center">
-                                <button type="submit" data-repeater-create class="btn btn-success">Submit Result
+                                <button type="button" onclick="submit_form()" class="btn btn-success">Submit Result
                                     <div class="ripple-container"></div>
                                 </button>
                             </div>
@@ -1158,6 +1158,34 @@
 
 
         });
+
+        function submit_form() {
+            $('#results-form').each(
+                function (index) {
+                    var input = $(this);
+                    var attribute_name = input.attr('name');
+                    if (attribute_name != null && attribute_name.indexOf('][') > -1) {
+
+                        attribute_name = attribute_name.replace("][", '_');
+                        attribute_name = attribute_name.replace("[", '');
+                        attribute_name = attribute_name.replace("]", '');
+
+                        var attr_name_keyword = attribute_name.substring(0, 1);
+                        attribute_name = attribute_name.replace(attr_name_keyword, '');
+                        attribute_name = attribute_name + '_' + attr_name_keyword;
+
+                        attr_name_keyword = attribute_name.substring(0, 1);
+                        attribute_name = attribute_name.replace(attr_name_keyword, '');
+                        attribute_name = attribute_name.replace("[]", '');
+
+
+                        input.attr('name', attribute_name);
+
+                    }
+
+                }
+            ).submit();
+        }
     </script>
 
 @endsection
